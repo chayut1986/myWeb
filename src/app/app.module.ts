@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
 import { StaffModule } from './staff/staff.module';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
 
   ],
   imports: [

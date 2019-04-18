@@ -37,6 +37,8 @@ export class LoginPageComponent implements OnInit {
       if (!this.jwtHelper.isTokenExpired(token)) {
         let decoded = this.jwtHelper.decodeToken(token);
         console.log(decoded);
+        sessionStorage.setItem('fullname', decoded.fullname);
+        sessionStorage.setItem('email', decoded.email);
         if (decoded.userType === 'staff') {
           this.router.navigateByUrl('/staff');
         } else if (decoded.userType === 'admin') {
@@ -57,6 +59,12 @@ export class LoginPageComponent implements OnInit {
       let token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1NTU1Njg3MDcsImV4cCI6MTU4NzEwNDcwNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImZ1bGxuYW1lIjoiQ2hheXV0IFVib253YXQiLCJlbWFpbCI6ImNoYXl1dDE5ODZAZ21haWwuY29tIiwidXNlclR5cGUiOiJzdGFmZiJ9.5yfu81cJPnGOjw4Q_GmZc8hBdzF3ppncSDC_0q3ZbKw`;
 
       sessionStorage.setItem('token', token);
+
+      let decoded = this.jwtHelper.decodeToken(token);
+
+      console.log(decoded);
+      sessionStorage.setItem('fullname', decoded.fullname);
+      sessionStorage.setItem('email', decoded.email);
 
       console.log(typeof this.typeId);
 

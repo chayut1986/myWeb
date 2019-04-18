@@ -11,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
 import { StaffModule } from './staff/staff.module';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 
 
 
@@ -19,6 +20,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    AccessDeniedComponent,
     
 
   ],

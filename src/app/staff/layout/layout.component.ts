@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class LayoutComponent implements OnInit {
+  email: string;
+  fullname: string;
 
   constructor() { }
 
   ngOnInit() {
+   // this.email = sessionStorage.getItem('email');
+   this.fullname = sessionStorage.getItem('fullname');
   }
 
 }

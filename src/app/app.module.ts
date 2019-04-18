@@ -14,10 +14,12 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    
 
   ],
   imports: [

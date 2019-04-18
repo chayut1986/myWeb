@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
+import { StaffModule } from './staff/staff.module';
 
 
 
@@ -24,7 +25,8 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     FormsModule,
     LoginModule,
-    AdminModule
+    AdminModule,
+    StaffModule
 
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +20,7 @@ export class LoginPageComponent implements OnInit {
   ];
 
 
-  constructor() {
+  constructor(private router: Router) {
 
   }
 
@@ -31,6 +32,7 @@ export class LoginPageComponent implements OnInit {
     console.log(this.typeId);
     if (this.username === 'admin' && this.password === 'admin') {
       this.isError = false;
+      this.router.navigateByUrl('/admin');
     } else {
       this.isError = true;
     }

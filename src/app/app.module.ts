@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
+import { AdminModule } from './admin/admin.module';
 
 
 
@@ -22,7 +23,8 @@ import { LoginModule } from './login/login.module';
     ClarityModule,
     BrowserAnimationsModule,
     FormsModule,
-    LoginModule
+    LoginModule,
+    AdminModule
 
 
 

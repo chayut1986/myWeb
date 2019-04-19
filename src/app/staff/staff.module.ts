@@ -8,10 +8,11 @@ import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { RequestComponent } from './request/request.component';
 import { AuthGuardService } from '../shared/auth-guard.service';
+import { StaffGuardService } from '../shared/staff-guard.service';
 
 @NgModule({
   declarations: [LayoutComponent, MainComponent, RequestComponent],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, StaffGuardService],
   imports: [
     CommonModule,
     StaffRoutingModule,

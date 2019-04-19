@@ -12,10 +12,13 @@ export class AdminGuardService {
 
   canActivate() {
     let token = sessionStorage.getItem('token');
+
     if (token) {
 
       let decoded = this.jwtHelper.decodeToken(token);
-      if (decoded.usertype === 'admin') {
+      console.log(decoded);
+
+      if (decoded.userType === 'admin') {
         return true;
       } else {
         this.router.navigateByUrl('access-denied');

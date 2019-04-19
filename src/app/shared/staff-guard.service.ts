@@ -16,9 +16,10 @@ export class StaffGuardService {
     if (token) {
 
       let decoded = this.jwtHelper.decodeToken(token);
-      if (decoded.usertype === 'staff') {
+      if (decoded.userType === 'staff') {
         return true;
       } else {
+        console.log('Permission denied!!')
         this.router.navigateByUrl('access-denied');
       }
 

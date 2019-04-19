@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class HomeComponent implements OnInit {
+  users = [{
+    id: '1',
+    name: ' Chayut Ubonwat',
+    creation: '11/11/2529',
+    color: 'red'
+
+  }];
 
   constructor() { }
 

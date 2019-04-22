@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
 import { StaffModule } from './staff/staff.module';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
+// import { LoginService } from './login/login.service';
 
 
 
@@ -21,7 +23,7 @@ import { AccessDeniedComponent } from './shared/access-denied/access-denied.comp
     AppComponent,
     PageNotFoundComponent,
     AccessDeniedComponent,
-    
+
 
   ],
   imports: [
@@ -37,7 +39,10 @@ import { AccessDeniedComponent } from './shared/access-denied/access-denied.comp
 
 
   ],
-  providers: [],
+  providers: [
+    // LoginService,
+    // { provide: 'API_URL', useValue: environment.apiUrl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

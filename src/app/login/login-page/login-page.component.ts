@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login-page',
@@ -22,7 +23,7 @@ export class LoginPageComponent implements OnInit {
   ];
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
 
   }
 
@@ -32,13 +33,14 @@ export class LoginPageComponent implements OnInit {
 
   checkToken() {
     let token = sessionStorage.getItem('token');
-
     if (token) {
       if (!this.jwtHelper.isTokenExpired(token)) {
         let decoded = this.jwtHelper.decodeToken(token);
         console.log(decoded);
+
         sessionStorage.setItem('fullname', decoded.fullname);
         sessionStorage.setItem('email', decoded.email);
+
         if (decoded.userType === 'staff') {
           this.router.navigateByUrl('/staff');
         } else if (decoded.userType === 'admin') {
@@ -47,39 +49,42 @@ export class LoginPageComponent implements OnInit {
           this.isError = true;
         }
       }
-
     }
   }
 
-  doLogin() {
-    console.log(this.username);
-    console.log(this.typeId);
-    if (this.username === 'admin' && this.password === 'admin') {
-      this.isError = false;
-      // let token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1NTU1Njg3MDcsImV4cCI6MTU4NzEwNDcwNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImZ1bGxuYW1lIjoiQ2hheXV0IFVib253YXQiLCJlbWFpbCI6ImNoYXl1dDE5ODZAZ21haWwuY29tIiwidXNlclR5cGUiOiJzdGFmZiJ9.5yfu81cJPnGOjw4Q_GmZc8hBdzF3ppncSDC_0q3ZbKw`;
+  async doLogin() {
 
-      let token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1NTU2NDEwMzgsImV4cCI6MTU4NzE3NzAzOCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImZ1bGxuYW1lIjoiSm9obm55IiwiZW1haWwiOiJ3aXphcmRldmlsQHdpbmRvd3NsaXZlLmNvbSIsInVzZXJUeXBlIjoiYWRtaW4ifQ.N6o-qwSEcuU0RKrMCAwdBcRnUw-GZZEbCVVjynOJJbI`;
+    try {
+      let rs: any = await this.loginService.doLogin(
+        this.username,
+        this.password,
+        this.typeId
+      );
 
-      sessionStorage.setItem('token', token);
+      if (rs.ok) {
+        this.isError = false;
+        let token = rs.token;
 
-      let decoded = this.jwtHelper.decodeToken(token);
+        sessionStorage.setItem('token', token);
 
-      console.log(decoded);
-      sessionStorage.setItem('fullname', decoded.fullname);
-      sessionStorage.setItem('email', decoded.email);
+        let decoded = this.jwtHelper.decodeToken(token);
+        console.log(decoded);
 
-      console.log(typeof this.typeId);
+        sessionStorage.setItem('fullname', decoded.fullname);
 
-      if (this.typeId === '1') {
-
-        this.router.navigateByUrl('/admin');
+        if (this.typeId === '1') {
+          this.router.navigateByUrl('/admin');
+        } else {
+          this.router.navigateByUrl('/staff');
+        }
       } else {
-        this.router.navigateByUrl('/staff');
+        this.isError = true;
       }
 
-    } else {
-      this.isError = true;
+    } catch (error) {
+
     }
+
   }
 
 }

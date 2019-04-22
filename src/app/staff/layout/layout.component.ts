@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class LayoutComponent implements OnInit {
-  email: string;
+
   fullname: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // this.email = sessionStorage.getItem('email');
+
     this.fullname = sessionStorage.getItem('fullname');
   }
 

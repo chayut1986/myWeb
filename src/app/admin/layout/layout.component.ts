@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
+  fullname: string;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.fullname = sessionStorage.getItem('fullname');
   }
 
 

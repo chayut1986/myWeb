@@ -13,6 +13,12 @@ import { AdminModule } from './admin/admin.module';
 import { StaffModule } from './staff/staff.module';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return sessionStorage.getItem('token');
+}
 // import { LoginService } from './login/login.service';
 
 
@@ -27,6 +33,14 @@ import { AccessDeniedComponent } from './shared/access-denied/access-denied.comp
 
   ],
   imports: [
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:3000'],
+        blacklistedRoutes: ['localhost:3000/login/']
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     ClarityModule,

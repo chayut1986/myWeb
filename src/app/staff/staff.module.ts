@@ -9,15 +9,18 @@ import { FormsModule } from '@angular/forms';
 import { RequestComponent } from './request/request.component';
 import { AuthGuardService } from '../shared/auth-guard.service';
 import { StaffGuardService } from '../shared/staff-guard.service';
+import { ThaiDatePipe } from '../shared/thai-date.pipe';
+import { ShortTimePipe } from '../shared/short-time.pipe';
 
 @NgModule({
-  declarations: [LayoutComponent, MainComponent, RequestComponent],
+  declarations: [LayoutComponent, MainComponent, RequestComponent, ThaiDatePipe, ShortTimePipe],
   providers: [AuthGuardService, StaffGuardService],
   imports: [
     CommonModule,
     StaffRoutingModule,
     ClarityModule,
-    FormsModule
+    FormsModule,
+
   ]
 })
 export class StaffModule { }

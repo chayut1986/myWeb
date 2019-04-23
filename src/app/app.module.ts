@@ -16,6 +16,7 @@ import { AccessDeniedComponent } from './shared/access-denied/access-denied.comp
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 export function tokenGetter() {
   return sessionStorage.getItem('token');
 }
@@ -29,6 +30,8 @@ export function tokenGetter() {
     AppComponent,
     PageNotFoundComponent,
     AccessDeniedComponent,
+
+
 
 
   ],

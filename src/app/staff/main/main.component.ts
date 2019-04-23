@@ -7,17 +7,19 @@ import { RequestService } from '../request.service';
   styles: []
 })
 export class MainComponent implements OnInit {
+  requests = [];
 
   constructor(private requestService: RequestService) { }
 
   ngOnInit() {
-
+    this.getRequest();
   }
 
   async getRequest() {
     try {
       let rs: any = await this.requestService.getRequest();
       console.log(rs);
+      this.requests = rs.rows;
     } catch (error) {
 
     }

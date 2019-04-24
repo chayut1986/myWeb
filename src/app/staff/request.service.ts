@@ -15,11 +15,12 @@ export class RequestService {
   }
 
   saveRequest(cause: string, remark: string, categoryId: any) {
-    let body = {
-      cause: cause,
-      categoryId: categoryId,
-      remark: remark
-    };
+    let body: any = {};
+
+    body.cause = cause;
+    body.categoryId = categoryId;
+    body.remark = remark;
+
     const url = ` ${this.apiUrl}/request `;
     return this.http.post(url, body).toPromise();
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StandardService } from 'src/app/shared/standard.service';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-request',
@@ -15,7 +16,9 @@ export class RequestComponent implements OnInit {
   categoryId: any = null;
 
 
-  constructor(private standardService: StandardService) { }
+  constructor(
+    private standardService: StandardService,
+    private requestService: RequestService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -33,12 +36,26 @@ export class RequestComponent implements OnInit {
 
 
     } catch (error) {
-      console.log(this.cause, this.remark, this.getCategories);
+      console.error(error);
     }
   }
 
-  save() {
-    console.log()
+  async save() {
+    try {
+      let rs: any = await this.requestService.saveRequest(
+        this.cause, this.categoryId, this.remark
+      );
+
+      if (rs.ok) {
+        console.log('ok');
+      } else {
+        console.log(rs.error);
+      }
+
+
+    } catch (error) {
+      console.error(error);
+    }
 
   }
 

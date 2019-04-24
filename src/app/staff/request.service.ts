@@ -13,4 +13,15 @@ export class RequestService {
     return this.http.get(url).toPromise();
 
   }
+
+  saveRequest(cause: string, remark: string, categoryId: any) {
+    let body = {
+      cause: cause,
+      categoryId: categoryId,
+      remark: remark
+    };
+    const url = ` ${this.apiUrl}/request `;
+    return this.http.post(url, body).toPromise();
+
+  }
 }

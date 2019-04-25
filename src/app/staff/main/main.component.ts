@@ -13,6 +13,8 @@ export class MainComponent implements OnInit {
   perPage = 5;
   total = 0;
 
+  loading = true;
+
 
   constructor(private requestService: RequestService) { }
 
@@ -21,12 +23,15 @@ export class MainComponent implements OnInit {
   }
 
   async getRequest(limit: number, offset: number) {
+    this.loading = true;
     try {
       let rs: any = await this.requestService.getRequest(limit, offset);
       console.log(rs);
       this.requests = rs.rows;
       this.total = rs.total;
+      this.loading = false;
     } catch (error) {
+      this.loading = false;
 
     }
   }

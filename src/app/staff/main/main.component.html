@@ -1,4 +1,4 @@
-<clr-datagrid>
+<clr-datagrid (clrDgRefresh)="refresh($event)">
   <clr-dg-column>รหัสแจ้ง ID</clr-dg-column>
   <clr-dg-column>วันที่</clr-dg-column>
   <clr-dg-column>อาการ</clr-dg-column>
@@ -17,5 +17,13 @@
     </clr-dg-cell>
   </clr-dg-row>
 
-  <clr-dg-footer>{{requests.length}} รายการ</clr-dg-footer>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="perPage" [clrDgTotalItems]="total">
+      <!-- <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size> -->
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      จาก {{pagination.totalItems}} รายการ
+    </clr-dg-pagination>
+  </clr-dg-footer>
+
 </clr-datagrid>

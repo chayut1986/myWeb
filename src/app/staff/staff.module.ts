@@ -12,10 +12,11 @@ import { StaffGuardService } from '../shared/staff-guard.service';
 import { ThaiDatePipe } from '../shared/thai-date.pipe';
 import { ShortTimePipe } from '../shared/short-time.pipe';
 import { StandardService } from '../shared/standard.service';
+import { AlertService } from '../shared/alert.service';
 
 @NgModule({
   declarations: [LayoutComponent, MainComponent, RequestComponent, ThaiDatePipe, ShortTimePipe],
-  providers: [AuthGuardService, StaffGuardService, StandardService],
+  providers: [AuthGuardService, StaffGuardService, StandardService, AlertService],
   imports: [
     CommonModule,
     StaffRoutingModule,

@@ -3,6 +3,9 @@ import { StandardService } from 'src/app/shared/standard.service';
 import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
 import { RequestService } from '../request.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/alert.service';
+
+
 
 @Component({
   selector: 'app-request',
@@ -21,6 +24,7 @@ export class RequestComponent implements OnInit {
   constructor(
     private standardService: StandardService,
     private requestService: RequestService,
+    private alertService: AlertService,
     private router: Router) { }
 
   ngOnInit() {
@@ -49,17 +53,18 @@ export class RequestComponent implements OnInit {
       let rs: any = await this.requestService.saveRequest(
         this.cause, this.remark, this.categoryId
       );
-      console.log(this.cause, this.remark, this.categoryId);
+      // console.log(this.cause, this.remark, this.categoryId);
 
       if (rs.ok) {
+        this.alertService.success();
         this.router.navigateByUrl('/staff/main');
       } else {
-        console.log(rs.error);
+        this.alertService.error();
       }
 
 
     } catch (error) {
-      console.error(error);
+      this.alertService.error();
     }
 
   }

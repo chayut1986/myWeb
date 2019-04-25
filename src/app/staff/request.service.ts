@@ -8,8 +8,9 @@ export class RequestService {
 
   constructor(@Inject('API_URL') private apiUrl: string, private http: HttpClient) { }
 
-  getRequest() {
-    const url = ` ${this.apiUrl}/request `;
+  getRequest(limit: number, offset: number) {
+    const url = ` ${this.apiUrl}/request?limit=${limit}&offset=${offset} `;
+    console.log(url);
     return this.http.get(url).toPromise();
 
   }

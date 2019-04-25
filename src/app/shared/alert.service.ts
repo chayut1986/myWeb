@@ -32,7 +32,7 @@ export class AlertService {
 
     Toast.fire({
       type: 'error',
-      title: 'ยกเลิกรายการเรียบแล้วแล้ว'
+      title: 'ไม่พบข้อมูล โปรดตรวจสอบ'
     });
 
   }

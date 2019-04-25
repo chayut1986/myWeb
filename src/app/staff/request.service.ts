@@ -26,4 +26,12 @@ export class RequestService {
     return this.http.post(url, body).toPromise();
 
   }
+
+
+  getLogs(requestId: any) {
+
+    const url = ` ${this.apiUrl}/request/logs/${requestId} `;
+    return this.http.get(url).toPromise();
+
+  }
 }

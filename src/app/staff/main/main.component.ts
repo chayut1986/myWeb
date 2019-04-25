@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
 import { ClrDatagridStateInterface } from '@clr/angular';
 import { stat } from 'fs';
+import { AlertService } from '../../shared/alert.service';
 
 @Component({
   selector: 'app-main',
@@ -10,13 +11,19 @@ import { stat } from 'fs';
 })
 export class MainComponent implements OnInit {
   requests = [];
+  requestLogs = [];
   perPage = 5;
   total = 0;
+
+  isOpen = false;
 
   loading = true;
 
 
-  constructor(private requestService: RequestService) { }
+  constructor(
+    private requestService: RequestService,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit() {
     // this.getRequest();
@@ -42,6 +49,22 @@ export class MainComponent implements OnInit {
     let limit = +state.page.to + 1;
     this.getRequest(limit, offset);
 
+  }
+
+
+  async  openModal(requestId: any) {
+    try {
+      let rs: any = await this.requestService.getLogs(requestId);
+      if (rs.rows.length) {
+        this.requestLogs = rs.rows;
+        this.isOpen = true;
+      } else {
+        this.alertService.error();
+      }
+
+    } catch (error) {
+      this.alertService.error();
+    }
   }
 
 }

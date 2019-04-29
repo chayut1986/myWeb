@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { AccessDeniedComponent } from './shared/access-denied/access-denied.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 export function tokenGetter() {
@@ -58,7 +59,8 @@ export function tokenGetter() {
   ],
   providers: [
     // LoginService,
-    // { provide: 'API_URL', useValue: environment.apiUrl }
+    { provide: 'API_URL', useValue: environment.apiUrl },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

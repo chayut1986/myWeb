@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { AdminGuardService } from '../shared/admin-guard.service';
+import { ThaiDatePipe } from '../shared/thai-date.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LayoutComponent, HomeComponent],
@@ -15,7 +17,8 @@ import { AdminGuardService } from '../shared/admin-guard.service';
     CommonModule,
     AdminRoutingModule,
     ClarityModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

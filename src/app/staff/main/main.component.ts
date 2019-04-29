@@ -3,6 +3,7 @@ import { RequestService } from '../request.service';
 import { ClrDatagridStateInterface } from '@clr/angular';
 import { stat } from 'fs';
 import { AlertService } from '../../shared/alert.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-main',
@@ -86,6 +87,10 @@ export class MainComponent implements OnInit {
         console.log('cancel');
       });
   }
+
+
+
+
 
 
 }

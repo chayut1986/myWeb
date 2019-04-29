@@ -66,5 +66,26 @@ export class MainComponent implements OnInit {
       this.alertService.error();
     }
   }
+  async removeRequest(requestId: any) {
+    this.alertService.confirm()
+      .then(async () => {
+        try {
+          let rs: any = await this.requestService.removeRequest(requestId);
+          if (rs.ok) {
+            this.alertService.removeSuccess();
+            this.getRequest(this.perPage, 0);
+          } else {
+            this.alertService.error();
+          }
+        } catch (error) {
+          this.alertService.error();
+
+        }
+      })
+      .catch(() => {
+        console.log('cancel');
+      });
+  }
+
 
 }

@@ -34,4 +34,33 @@ export class RequestService {
     return this.http.get(url).toPromise();
 
   }
+
+  removeRequest(requestId: any) {
+
+    const url = ` ${this.apiUrl}/request/${requestId} `;
+    return this.http.delete(url).toPromise();
+
+  }
+
+  getRequestDetail(requestId: any) {
+
+    const url = ` ${this.apiUrl}/request/${requestId} `;
+    return this.http.get(url).toPromise();
+
+  }
+
+
+  updateRequest(requestId: any, cause: string, categoryId: any, remark: any) {
+
+    let body: any = {};
+
+    body.cause = cause;
+    body.categoryId = categoryId;
+    body.remark = remark;
+
+
+    const url = ` ${this.apiUrl}/request/${requestId} `;
+    return this.http.put(url, body).toPromise();
+
+  }
 }

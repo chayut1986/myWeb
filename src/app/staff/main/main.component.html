@@ -1,60 +1,60 @@
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-  <clr-dg-column>รหัสแจ้ง ID</clr-dg-column>
-  <clr-dg-column>วันที่</clr-dg-column>
-  <clr-dg-column>อาการ</clr-dg-column>
+  <clr-dg-column>รหัสแจ้ง</clr-dg-column>
+  <clr-dg-column>วันที่/เวลา</clr-dg-column>
+  <clr-dg-column>อาการที่แจ้ง</clr-dg-column>
   <clr-dg-column>ประเภท</clr-dg-column>
   <clr-dg-column>สถานะ</clr-dg-column>
-  <clr-dg-column>Action</clr-dg-column>
+  <clr-dg-column>#</clr-dg-column>
 
   <clr-dg-row *ngFor="let req of requests" [ngStyle]="{'background-color': req.color}">
-    <clr-dg-cell>{{req.request_code}}</clr-dg-cell>
-    <clr-dg-cell>{{req.request_date | thaiDate }} {{req.request_time | shortTime}}</clr-dg-cell>
-    <clr-dg-cell>{{req.request_cause}}</clr-dg-cell>
-    <clr-dg-cell>{{req.request_category_name}}</clr-dg-cell>
-    <clr-dg-cell>{{req.request_status_name}}</clr-dg-cell>
+    <clr-dg-cell>{{ req.request_code }}</clr-dg-cell>
+    <clr-dg-cell>{{ req.request_date | thaiDate }} {{ req.request_time | shortTime }}</clr-dg-cell>
+    <clr-dg-cell>{{ req.request_cause }}</clr-dg-cell>
+    <clr-dg-cell>{{ req.request_category_name }}</clr-dg-cell>
+    <clr-dg-cell>{{ req.request_status_name }}</clr-dg-cell>
     <clr-dg-cell style="text-align: center;">
-      <div class="btn-group"><button class="btn btn-sm btn-success" (click)="openModal(req.request_id)">
+      <div class="btn-group">
+        <button (click)="openModal(req.request_id)" class="btn btn-sm btn-icon btn-success">
           <clr-icon shape="note"></clr-icon>
         </button>
-        <button class="btn btn-sm btn-primary" [disabled]="req.request_status_id== 3 || req.request_status_id == 2 "
-          routerLink="/staff/request" [queryParams]="{requestId:req.request_id}">
+        <button [disabled]="req.request_status_id == 4 || req.request_status_id == 5" routerLink="/staff/request"
+          [queryParams]="{requestId: req.request_id}" class="btn btn-sm btn-icon btn-primary">
           <clr-icon shape="pencil"></clr-icon>
         </button>
-        <button class="btn btn-sm btn-danger" [disabled]="req.request_status_id== 3 || req.request_status_id == 2 "
-          (click)="removeRequest(req.request_id)">
+        <button [disabled]="req.request_status_id == 4 || req.request_status_id == 5"
+          (click)="removeRequest(req.request_id)" class="btn btn-sm btn-icon btn-danger">
           <clr-icon shape="trash"></clr-icon>
-        </button></div>
+        </button>
+      </div>
     </clr-dg-cell>
   </clr-dg-row>
 
-
   <clr-dg-footer>
     <clr-dg-pagination #pagination [clrDgPageSize]="perPage" [clrDgTotalItems]="total">
-      <!-- <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size> -->
-      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-      จาก {{pagination.totalItems}} รายการ
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} จาก {{pagination.totalItems}} รายการ
     </clr-dg-pagination>
   </clr-dg-footer>
 
 </clr-datagrid>
+
 <clr-modal [(clrModalOpen)]="isOpen" [clrModalSize]="'lg'" [clrModalClosable]="false">
   <h3 class="modal-title">ประวัติการดำเนินการของช่าง</h3>
   <div class="modal-body">
+
     <clr-stack-view>
       <clr-stack-block [clrSbExpanded]="true" *ngFor="let log of requestLogs">
-        <clr-stack-label>วันที่ {{log.create_at | thaiDate }}</clr-stack-label>
-        <clr-stack-content>ช่าง {{log.first_name}}, {{log.last_name}}</clr-stack-content>
-
+        <clr-stack-label>วันที่ {{log.created_at | thaiDate}}</clr-stack-label>
+        <clr-stack-content>ช่าง {{ log.first_name }} {{ log.last_name }}</clr-stack-content>
         <clr-stack-block>
           <clr-stack-label>กิจกรรมที่ทำ</clr-stack-label>
-          <clr-stack-content>{{log.request_logs}}</clr-stack-content>
+          <clr-stack-content>{{ log.request_logs }}</clr-stack-content>
         </clr-stack-block>
 
       </clr-stack-block>
     </clr-stack-view>
+
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="isOpen = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="isOpen = false">Ok</button>
+    <button type="button" class="btn btn-primary" (click)="isOpen = false">ตกลง</button>
   </div>
 </clr-modal>

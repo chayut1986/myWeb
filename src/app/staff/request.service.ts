@@ -35,11 +35,16 @@ export class RequestService {
 
   }
 
-  removeRequest(requestId: any) {
+  removeRequest111(requestId: any) {
 
     const url = ` ${this.apiUrl}/request/${requestId} `;
     return this.http.delete(url).toPromise();
 
+  }
+
+
+  removeRequest(requestId: any) {
+    return this.http.delete(this.apiUrl + '/request/' + requestId).toPromise();
   }
 
   getRequestDetail(requestId: any) {

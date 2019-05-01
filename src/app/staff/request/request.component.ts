@@ -96,7 +96,7 @@ export class RequestComponent implements OnInit {
 
       if (rs.ok) {
         if (this.requestId) {
-          this.alertService.updateSuccess();
+          this.alertService.success();
           this.router.navigateByUrl('/staff/main');
         } else {
           this.alertService.success();

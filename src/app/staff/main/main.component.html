@@ -1,12 +1,48 @@
-<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-  <clr-dg-column>รหัสแจ้ง</clr-dg-column>
-  <clr-dg-column>วันที่/เวลา</clr-dg-column>
-  <clr-dg-column>อาการที่แจ้ง</clr-dg-column>
-  <clr-dg-column>ประเภท</clr-dg-column>
-  <clr-dg-column>สถานะ</clr-dg-column>
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading" [clrDgSelected]="selected">
+  <clr-dg-column [clrDgField]="'request_code'">
+
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      รหัสแจ้ง
+
+    </ng-container>
+
+
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'request_date'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      วันที่/เวลา
+    </ng-container>
+
+
+
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'request_cause'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      อาการที่แจ้ง
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'request_category_name'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      ประเภท
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'request_status_name'">
+
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      สถานะ
+    </ng-container>
+  </clr-dg-column>
   <clr-dg-column>#</clr-dg-column>
 
-  <clr-dg-row *ngFor="let req of requests" [ngStyle]="{'background-color': req.color}">
+  <clr-dg-row *clrDgItems="let req of requests" [ngStyle]="{'background-color': req.color}" [clrDgItem]="req">
+    <clr-dg-action-overflow>
+      <button class="action-item">
+        <clr-icon shape="note"></clr-icon>Edit
+      </button>
+      <button class="action-item">
+        <clr-icon shape="trash"></clr-icon>Delete
+      </button>
+    </clr-dg-action-overflow>
     <clr-dg-cell>{{ req.request_code }}</clr-dg-cell>
     <clr-dg-cell>{{ req.request_date | thaiDate }} {{ req.request_time | shortTime }}</clr-dg-cell>
     <clr-dg-cell>{{ req.request_cause }}</clr-dg-cell>
@@ -17,11 +53,11 @@
         <button (click)="openModal(req.request_id)" class="btn btn-sm btn-icon btn-success">
           <clr-icon shape="note"></clr-icon>
         </button>
-        <button [disabled]="req.request_status_id == 4 || req.request_status_id == 5" routerLink="/staff/request"
+        <button [disabled]="req.request_status_id == 2 || req.request_status_id == 3" routerLink="/staff/request"
           [queryParams]="{requestId: req.request_id}" class="btn btn-sm btn-icon btn-primary">
           <clr-icon shape="pencil"></clr-icon>
         </button>
-        <button [disabled]="req.request_status_id == 4 || req.request_status_id == 5"
+        <button [disabled]="req.request_status_id == 2 || req.request_status_id == 3"
           (click)="removeRequest(req.request_id)" class="btn btn-sm btn-icon btn-danger">
           <clr-icon shape="trash"></clr-icon>
         </button>

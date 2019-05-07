@@ -19,8 +19,9 @@ export class RequestService {
     let body: any = {};
 
     body.cause = cause;
-    body.categoryId = categoryId;
     body.remark = remark;
+    body.categoryId = categoryId;
+
 
     const url = ` ${this.apiUrl}/request `;
     return this.http.post(url, body).toPromise();
@@ -55,13 +56,14 @@ export class RequestService {
   }
 
 
-  updateRequest(requestId: any, cause: string, categoryId: any, remark: any) {
+  updateRequest(requestId: any, cause: string, remark: any, categoryId: any) {
 
     let body: any = {};
 
     body.cause = cause;
-    body.categoryId = categoryId;
     body.remark = remark;
+    body.categoryId = categoryId;
+
 
 
     const url = ` ${this.apiUrl}/request/${requestId} `;

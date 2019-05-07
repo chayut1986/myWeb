@@ -18,7 +18,7 @@ export class AdminGuardService {
       let decoded = this.jwtHelper.decodeToken(token);
       console.log(decoded);
 
-      if (decoded.userType === 'admin') {
+      if (decoded.userTypeName === 'Admin') {
         return true;
       } else {
         this.router.navigateByUrl('access-denied');

@@ -19,6 +19,8 @@ export class MainComponent implements OnInit {
   isOpen = false;
 
   loading = true;
+  selected = [];
+
 
 
   constructor(

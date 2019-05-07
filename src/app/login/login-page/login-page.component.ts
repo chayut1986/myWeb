@@ -3,6 +3,7 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { decode } from 'punycode';
 
 @Component({
   selector: 'app-login-page',
@@ -13,14 +14,14 @@ export class LoginPageComponent implements OnInit {
 
   username: string;
   password: string;
-  typeId: any;
+  userTypeId: any;
   isError = false;
   jwtHelper: JwtHelperService = new JwtHelperService();
 
-  userTypes = [
-    { id: 1, name: 'ผู้ดูแลระบบ' },
-    { id: 2, name: 'เจ้าหน้าที่' }
-  ];
+  // userTypes = [
+  //   { id: 1, name: 'ผู้ดูแลระบบ' },
+  //   { id: 2, name: 'เจ้าหน้าที่' }
+  // ];
 
 
   constructor(private router: Router, private loginService: LoginService) {
@@ -39,11 +40,11 @@ export class LoginPageComponent implements OnInit {
         console.log(decoded);
 
         sessionStorage.setItem('fullname', decoded.fullname);
-        sessionStorage.setItem('email', decoded.email);
+        // sessionStorage.setItem('email', decoded.email);
 
-        if (decoded.userType === 'staff') {
+        if (decoded.userTypeName === 'User') {
           this.router.navigateByUrl('/staff');
-        } else if (decoded.userType === 'admin') {
+        } else if (decoded.userType === 'Admin') {
           this.router.navigateByUrl('/admin');
         } else {
           this.isError = true;
@@ -58,7 +59,7 @@ export class LoginPageComponent implements OnInit {
       let rs: any = await this.loginService.doLogin(
         this.username,
         this.password,
-        this.typeId
+
       );
 
       if (rs.ok) {
@@ -72,7 +73,10 @@ export class LoginPageComponent implements OnInit {
 
         sessionStorage.setItem('fullname', decoded.fullname);
 
-        if (this.typeId === '1') {
+
+        // console.log(decoded.userTypeName);
+
+        if (decoded.userTypeName == 'Admin') {
           this.router.navigateByUrl('/admin');
         } else {
           this.router.navigateByUrl('/staff');

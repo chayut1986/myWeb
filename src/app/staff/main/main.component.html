@@ -67,6 +67,7 @@
 
   <clr-dg-footer>
     <clr-dg-pagination #pagination [clrDgPageSize]="perPage" [clrDgTotalItems]="total">
+      <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,20]">รายการ ต่อ หน้า</clr-dg-page-size>
       {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} จาก {{pagination.totalItems}} รายการ
     </clr-dg-pagination>
   </clr-dg-footer>

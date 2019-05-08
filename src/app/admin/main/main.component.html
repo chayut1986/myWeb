@@ -1,0 +1,77 @@
+<clr-datagrid [clrDgLoading]="loading" [clrDgSelected]="selected">
+
+  <clr-dg-column [clrDgField]="'user_id'">
+
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      User ID
+
+    </ng-container>
+
+
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'first_name'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      ชื่อ
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'last_name'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      นามสกุล
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'birth'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      BirthDay
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'sex'">
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      Sex
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'user_type_name'">
+
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      User Type
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column [clrDgField]="'is_active'">
+
+    <ng-container *clrDgHideableColumn="{hidden: false}">
+      Status
+    </ng-container>
+  </clr-dg-column>
+  <clr-dg-column>#</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+    <clr-dg-action-overflow>
+
+      <button class="action-item">
+        <clr-icon shape="note"></clr-icon>Edit
+      </button>
+      <button class="action-item">
+        <clr-icon shape=" trash"></clr-icon>Delete
+      </button>
+    </clr-dg-action-overflow>
+    <clr-dg-cell>{{user.user_id}}</clr-dg-cell>
+    <clr-dg-cell>{{user.first_name}} </clr-dg-cell>
+    <clr-dg-cell>{{user.last_name}} </clr-dg-cell>
+    <clr-dg-cell>{{user.birth | thaiDate}}</clr-dg-cell>
+    <clr-dg-cell>{{user.sex}}</clr-dg-cell>
+    <clr-dg-cell>{{user.user_type_name}}</clr-dg-cell>
+    <clr-dg-cell>
+      <clr-icon shape="assign-user" class="is-success" *ngIf="user.is_active === 'Y' "></clr-icon>
+      <clr-icon shape="user" class="is-solid has-badge" *ngIf="user.is_active === 'N' "></clr-icon>
+
+    </clr-dg-cell>
+    <clr-dg-cell></clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[5,10,15,20]">รายการต่อหน้า</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      of {{pagination.totalItems}} users
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

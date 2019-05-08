@@ -7,8 +7,15 @@
       </a>
     </div>
     <div class="header-nav">
-      <a href="javascript://" class="active nav-link"><span class="nav-text">Dashboard</span></a>
-      <a href="javascript://" class="nav-link"><span class="nav-text">Interactive Analytics</span></a>
+      <a href="javascript://" routerLink="/admin/main" routerLinkActive="active" class="nav-link nav-icon">
+        <clr-icon shape="cloud"></clr-icon>
+      </a>
+      <a href="javascript://" routerLink="/admin/newUser" routerLinkActive="active" class="nav-link nav-icon">
+        <clr-icon shape="plus"></clr-icon>
+      </a>
+      <a href="javascript://" routerLink="/admin/credit" routerLinkActive="active" class="nav-link nav-icon">
+        <clr-icon shape="event"></clr-icon>
+      </a>
     </div>
     <div class="header-actions">
       <clr-dropdown>
@@ -30,22 +37,19 @@
       <router-outlet></router-outlet>
     </div>
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
-      <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
-        <clr-icon clrVerticalNavIcon shape="user"></clr-icon>
+      <a clrVerticalNavLink routerLink="/admin/main" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
         หน้าหลัก
       </a>
-      <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
-        <clr-icon clrVerticalNavIcon shape="folder"></clr-icon>
-        ข้อมูลเจ้าหน้าที่
+      <a clrVerticalNavLink routerLink="/admin/newUser" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="plus"></clr-icon>
+        เพิ่มผู้ใช้งาน
       </a>
-      <a clrVerticalNavLink routerLink="./poison" routerLinkActive="active">
-        <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
-        ข้อมูลช่าง
+      <a clrVerticalNavLink routerLink="/admin/credit" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="event"></clr-icon>
+        เครดิต
       </a>
-      <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
-        <clr-icon clrVerticalNavIcon shape="grid-chart"></clr-icon>
-        ข้อมูลแผนก
-      </a>
+
 
     </clr-vertical-nav>
   </div>

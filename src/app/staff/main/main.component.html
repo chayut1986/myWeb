@@ -1,4 +1,4 @@
-<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading" [clrDgSelected]="selected">
+<clr-datagrid [clrDgLoading]="loading" [clrDgSelected]="selected">
   <clr-dg-column [clrDgField]="'request_code'">
 
     <ng-container *clrDgHideableColumn="{hidden: false}">
@@ -36,11 +36,13 @@
 
   <clr-dg-row *clrDgItems="let req of requests" [ngStyle]="{'background-color': req.color}" [clrDgItem]="req">
     <clr-dg-action-overflow>
-      <button class="action-item">
+      <button class="action-item" [disabled]="req.request_status_id == 2 || req.request_status_id == 3"
+        routerLink="/staff/request" [queryParams]="{requestId: req.request_id}">
         <clr-icon shape="note"></clr-icon>Edit
       </button>
-      <button class="action-item">
-        <clr-icon shape="trash"></clr-icon>Delete
+      <button class="action-item" (click)="removeRequest(req.request_id)"
+        [disabled]="req.request_status_id == 2 || req.request_status_id == 3">
+        <clr-icon shape=" trash"></clr-icon>Delete
       </button>
     </clr-dg-action-overflow>
     <clr-dg-cell>{{ req.request_code }}</clr-dg-cell>

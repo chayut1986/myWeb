@@ -114,6 +114,9 @@ export class RequestComponent implements OnInit {
     }
 
   }
+  cancel() {
+    this.router.navigateByUrl('/staff/main');
+  }
 
 
 }

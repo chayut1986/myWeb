@@ -20,7 +20,7 @@ export class AlertService {
   error() {
     swal.fire({
       title: 'Error!',
-      text: 'Do you want to continue',
+      text: 'มีข้อผิดพลาด',
       type: 'error',
       confirmButtonText: 'Ok'
     });

@@ -21,9 +21,10 @@
       <div class="error active" *ngIf="isError">
         ชื่อหรือรหัสผ่านไม่ถูกต้อง
       </div>
-      <button type="submit" [disabled]="!username || !password" (click)="doLogin()"
-        class="btn btn-primary">LOGIN</button>
-      <a href="javascript://" class="signup">สมัครสมาชิก</a>
+      <button type="submit" [disabled]="!username || !password" (click)="doLogin()" class="btn btn-primary">
+        <clr-icon shape="login" class="is-solid"></clr-icon>LOGIN
+      </button>
+      <!-- <a href="javascript://" class="signup">สมัครสมาชิก</a> -->
     </div>
   </form>
 </div>

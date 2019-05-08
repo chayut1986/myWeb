@@ -1,4 +1,6 @@
-<clr-datagrid [clrDgLoading]="loading" [clrDgSelected]="selected">
+<clr-datagrid [clrDgLoading]="loading" [clrDgSelected]="selected" style="background: #FFFFFF ;">
+
+
   <clr-dg-column [clrDgField]="'request_code'">
 
     <ng-container *clrDgHideableColumn="{hidden: false}">
@@ -34,8 +36,11 @@
   </clr-dg-column>
   <clr-dg-column>#</clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let req of requests" [ngStyle]="{'background-color': req.color}" [clrDgItem]="req">
+  <clr-dg-row *clrDgItems="let req of requests" [clrDgItem]="req">
+
+    <!-- [ngStyle]="{'background-color': req.color}" -->
     <clr-dg-action-overflow>
+
       <button class="action-item" [disabled]="req.request_status_id == 2 || req.request_status_id == 3"
         routerLink="/staff/request" [queryParams]="{requestId: req.request_id}">
         <clr-icon shape="note"></clr-icon>Edit

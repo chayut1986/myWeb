@@ -13,4 +13,6 @@ export class StandardService {
     return this.http.get(url).toPromise();
 
   }
+
+
 }

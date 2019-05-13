@@ -46,8 +46,8 @@
   <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
     <clr-dg-action-overflow>
 
-      <button class="action-item">
-        <clr-icon shape="note"></clr-icon>Edit
+      <button class="action-item" routerLink="/admin/newUser" [queryParams]="{userId: user.user_id}">
+        <clr-icon shape=" note"></clr-icon>Edit
       </button>
       <button class="action-item">
         <clr-icon shape=" trash"></clr-icon>Delete

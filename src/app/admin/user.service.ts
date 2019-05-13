@@ -14,7 +14,13 @@ export class UserService {
     return this.http.get(url).toPromise();
   }
 
-  save(username: any, password: any, firstName: any, lastName: any, birth: any, userType: any, isActive: any) {
+  getUserDetail(userId: any) {
+    const url = ` ${this.apiUrl}/user/users/${userId} `;
+    return this.http.get(url).toPromise();
+
+  }
+
+  save(username: any, password: any, firstName: any, lastName: any, birth: any, userTypeId: any, isActive: any) {
     let body: any = {};
 
     body.username = username;
@@ -22,7 +28,7 @@ export class UserService {
     body.firstName = firstName;
     body.lastName = lastName;
     body.birth = birth;
-    body.userType = userType;
+    body.userTypeId = userTypeId;
     body.isActive = isActive;
 
     const url = ` ${this.apiUrl}/user/users `;
@@ -32,8 +38,8 @@ export class UserService {
 
   }
 
-  update(userId: any, password: any, firstName: any, lastName: any, birth: any, userType: any, isActive: any) {
-    const url = ` ${this.apiUrl}/user/users/${userId} `;
+  update(userId: any, password: any, firstName: any, lastName: any, birth: any, userTypeId: any, isActive: any) {
+
     let body: any = {};
 
 
@@ -41,9 +47,10 @@ export class UserService {
     body.firstName = firstName;
     body.lastName = lastName;
     body.birth = birth;
-    body.userType = userType;
+    body.userTypeId = userTypeId;
     body.isActive = isActive;
 
+    const url = ` ${this.apiUrl}/user/users/${userId} `;
     console.log(url);
     return this.http.put(url, body).toPromise();
 
@@ -80,11 +87,7 @@ export class UserService {
 
   }
 
-  getUserDetail(userId: any) {
-    const url = ` ${this.apiUrl}/user/users/${userId} `;
-    return this.http.get(url).toPromise();
 
-  }
 
 
 

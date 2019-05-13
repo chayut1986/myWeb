@@ -3,8 +3,7 @@
     <div class="col-md-8 push-md-2">
       <div class="card">
         <div class="card-header">
-          <span *ngIf="!userId">Add new user</span>
-          <span *ngIf="userId">Edit new user</span>
+
         </div>
         <div class="card-block">
           <clr-alert [clrAlertType]="'alert-danger'" *ngIf="isError">
@@ -23,7 +22,7 @@
                     <label for="username">Username</label>
                   </div>
                   <div class="col-md-10">
-                    <input class="clr-form-control" [disabled]="userId" type="text" name="username"
+                    <input class="clr-form-control" [disabled]="userId" type="text" name="username" style="width:80%;"
                       [(ngModel)]="username" id="username">
                   </div>
                 </div>
@@ -33,7 +32,7 @@
                   </div>
                   <div class="col-md-10">
                     <input class="clr-form-control" name="password" [(ngModel)]="password" type="password"
-                      id="password">
+                      style="width:80%;" id="password">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -41,13 +40,15 @@
                     <label for="firstName">First name</label>
                   </div>
                   <div class="col-md-4">
-                    <input class="clr-form-control" name="firstName" [(ngModel)]="firstName" type="text" id="firstName">
+                    <input class="clr-form-control" name="firstName" [(ngModel)]="firstName" type="text" id="firstName"
+                      style="width:80%;">
                   </div>
                   <div class="col-md-2">
                     <label for="lastName">Last name</label>
                   </div>
                   <div class="col-md-4">
-                    <input class="cllr-form-control" type="text" name="lastName" [(ngModel)]="lastName" id="lastName">
+                    <input class="cllr-form-control" type="text" name="lastName" [(ngModel)]="lastName" id="lastName"
+                      style="width:100%;">
                   </div>
                 </div>
 
@@ -56,7 +57,9 @@
                     <label for="firstName">BirthDay</label>
                   </div>
                   <div class="col-md-4">
-                    <input type="date" [(clrDate)]="birth" id="birth" name="birth" [(ngModel)]="birth">
+
+                    <input type="date" [(clrDate)]="birth">
+
                   </div>
 
                 </div>

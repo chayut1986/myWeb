@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from 'src/app/shared/alert.service';
 
 @Component({
   selector: 'app-new-user',
@@ -22,7 +23,7 @@ export class NewUserComponent implements OnInit {
   userTypeId: any;
 
 
-  types: any = [];
+
 
   errorMessage: string;
   isError = false;
@@ -30,10 +31,15 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private alertService: AlertService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {
-    this.userId = this.route.snapshot.params.userId;
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      this.userId = params.userId;
+    });
   }
 
   async ngOnInit() {
@@ -48,7 +54,7 @@ export class NewUserComponent implements OnInit {
 
     try {
       const isActive = this.isActive ? 'Y' : 'N';
-      let rs = null;
+      let rs: any;
 
       if (this.userId) {
         rs = await this.userService.update(
@@ -71,11 +77,17 @@ export class NewUserComponent implements OnInit {
       }
 
       if (rs.ok) {
-        this.router.navigate(['/admin']);
+        if (this.userId) {
+          this.alertService.success();
+          this.router.navigateByUrl('/admin/main');
+        } else {
+          this.alertService.success();
+          this.router.navigateByUrl('/admin/main');
+        }
       } else {
 
-        this.isError = true;
-        this.errorMessage = rs.error;
+        this.alertService.error();
+
       }
     } catch (error) {
       console.log(error);
@@ -83,7 +95,7 @@ export class NewUserComponent implements OnInit {
       if (error.status === 0) {
         this.errorMessage = 'ไม่สามารถเชื่อมต่อกับ Server ได้';
       } else {
-        this.errorMessage = 'Server error: codt=' + error.status;
+        this.errorMessage = 'Server error: code=' + error.status;
       }
 
     }
@@ -91,14 +103,21 @@ export class NewUserComponent implements OnInit {
 
 
 
-  async getUserDetail(requestId: any) {
+  async getUserDetail(userId: any) {
     try {
-      let rs: any = await this.userService.getUserDetail(requestId);
+
+      let rs: any = await this.userService.getUserDetail(userId);
       if (rs.ok) {
         if (rs.rows) {
           this.userId = rs.rows.user_id;
-          this.username = rs.rows.user_name;
-          this.isActive = rs.rows.is_active;
+          this.username = rs.rows.username;
+          this.password = null;
+          this.firstName = rs.rows.first_name;
+          this.lastName = rs.rows.last_name;
+          this.birth = rs.rows.birth;
+          this.userTypeId = rs.rows.user_type_id;
+          this.isActive = rs.rows.is_active === 'Y' ? true : false;
+
         }
       }
     } catch (error) {

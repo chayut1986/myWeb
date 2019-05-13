@@ -14,6 +14,12 @@ export class RequestService {
     return this.http.get(url).toPromise();
 
   }
+  getRequestDetail(requestId: any) {
+
+    const url = ` ${this.apiUrl}/request/${requestId} `;
+    return this.http.get(url).toPromise();
+
+  }
 
   saveRequest(cause: string, remark: string, categoryId: any) {
     let body: any = {};
@@ -44,12 +50,7 @@ export class RequestService {
     return this.http.delete(url).toPromise();
   }
 
-  getRequestDetail(requestId: any) {
 
-    const url = ` ${this.apiUrl}/request/${requestId} `;
-    return this.http.get(url).toPromise();
-
-  }
 
 
   updateRequest(requestId: any, cause: string, remark: any, categoryId: any) {

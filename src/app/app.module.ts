@@ -16,6 +16,12 @@ import { AccessDeniedComponent } from './shared/access-denied/access-denied.comp
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
+
+import { registerLocaleData } from '@angular/common';
+import localeTh from '@angular/common/locales/th';
+
+registerLocaleData(localeTh, 'th');
 
 
 export function tokenGetter() {
@@ -60,7 +66,10 @@ export function tokenGetter() {
   providers: [
     // LoginService,
     { provide: 'API_URL', useValue: environment.apiUrl },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+
+    { provide: LOCALE_ID, useValue: 'th' },
+
   ],
   bootstrap: [AppComponent]
 })

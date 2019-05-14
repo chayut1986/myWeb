@@ -59,7 +59,6 @@
                   <div class="col-md-4">
 
                     <input type="date" [(clrDate)]="birth">
-
                   </div>
 
                 </div>
@@ -70,7 +69,7 @@
                   </div>
                   <div class="col-md-3">
                     <select name="userTypeId" [(ngModel)]="userTypeId">
-                      <option *ngFor="let u of userTypeList" [value]="u.user_type_id">
+                      <option *ngFor="let u of userType" [value]="u.user_type_id">
                         {{ u.user_type_name }}
                       </option>
                     </select>
@@ -97,7 +96,7 @@
         <div class="card-footer">
           <button class="btn btn-sm btn-danger" routerLink="/admin">Back</button>
           <button class="btn btn-sm btn-success" (click)="save()"
-            [disabled]="!username || !password  || !firstName || !lastName || !userTypeId">
+            [disabled]="!username || (!password && !userId) || !firstName || !lastName || !userTypeId">
             <clr-icon shape="floppy"></clr-icon> Save data
           </button>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/shared/alert.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-user',
@@ -17,7 +18,7 @@ export class NewUserComponent implements OnInit {
   birth: any;
   isActive = true;
 
-  userTypeList: any = [];
+  userType: any = [];
 
   userId: any;
   userTypeId: any;
@@ -74,6 +75,7 @@ export class NewUserComponent implements OnInit {
           this.birth,
           this.userTypeId,
           isActive);
+          console.log(this.birth +'zzzz');
       }
 
       if (rs.ok) {
@@ -109,12 +111,14 @@ export class NewUserComponent implements OnInit {
       let rs: any = await this.userService.getUserDetail(userId);
       if (rs.ok) {
         if (rs.rows) {
-          this.userId = rs.rows.user_id;
+         // this.userId = rs.rows.user_id;
           this.username = rs.rows.username;
-          this.password = null;
+        //  this.password = null;
           this.firstName = rs.rows.first_name;
           this.lastName = rs.rows.last_name;
-          this.birth = rs.rows.birth;
+         // this.birth = moment(rs.rows.birth).format('DD/MM/YYYY');
+         let now = moment().format('DD MM YYYY');
+          console.log(now);
           this.userTypeId = rs.rows.user_type_id;
           this.isActive = rs.rows.is_active === 'Y' ? true : false;
 
@@ -134,7 +138,7 @@ export class NewUserComponent implements OnInit {
       let rs: any = await this.userService.getUserTypes();
       if (rs.ok) {
 
-        this.userTypeList = rs.rows;
+        this.userType = rs.rows;
         console.log(rs.rows);
       } else {
         console.log(rs.error);

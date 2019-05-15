@@ -21,7 +21,7 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeTh from '@angular/common/locales/th';
 
-registerLocaleData(localeTh, 'th');
+registerLocaleData(localeTh, 'th_TH');
 
 
 export function tokenGetter() {
@@ -68,7 +68,7 @@ export function tokenGetter() {
     { provide: 'API_URL', useValue: environment.apiUrl },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
 
-    { provide: LOCALE_ID, useValue: 'th' },
+    { provide: LOCALE_ID, useValue: 'th_TH' },
 
   ],
   bootstrap: [AppComponent]

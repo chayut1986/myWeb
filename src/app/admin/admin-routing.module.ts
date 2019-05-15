@@ -8,6 +8,8 @@ import { PageNotFoundComponent } from '../shared/page-not-found/page-not-found.c
 import { NewUserComponent } from './new-user/new-user.component';
 import { CreditComponent } from './credit/credit.component';
 
+
+
 const routes: Routes = [
   {
     path: 'admin',
@@ -24,6 +26,8 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
+
 })
 export class AdminRoutingModule { }

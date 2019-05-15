@@ -4,10 +4,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/shared/alert.service';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.css']
+  styleUrls: ['./new-user.component.css'],
+
 })
 export class NewUserComponent implements OnInit {
 
@@ -35,6 +37,7 @@ export class NewUserComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private route: ActivatedRoute,
+
 
   ) {
     this.route.queryParams.subscribe(params => {
@@ -66,6 +69,7 @@ export class NewUserComponent implements OnInit {
           this.birth,
           this.userTypeId,
           isActive);
+        console.log(this.birth + 'update');
       } else {
         rs = await this.userService.save(
           this.username,
@@ -75,7 +79,7 @@ export class NewUserComponent implements OnInit {
           this.birth,
           this.userTypeId,
           isActive);
-          console.log(this.birth +'zzzz');
+        console.log(this.birth + 'save');
       }
 
       if (rs.ok) {
@@ -111,14 +115,18 @@ export class NewUserComponent implements OnInit {
       let rs: any = await this.userService.getUserDetail(userId);
       if (rs.ok) {
         if (rs.rows) {
-         // this.userId = rs.rows.user_id;
+          // this.userId = rs.rows.user_id;
           this.username = rs.rows.username;
-        //  this.password = null;
+          //  this.password = null;
           this.firstName = rs.rows.first_name;
           this.lastName = rs.rows.last_name;
-         // this.birth = moment(rs.rows.birth).format('DD/MM/YYYY');
-         let now = moment().format('DD MM YYYY');
-          console.log(now);
+          this.birth = moment(rs.rows.birth).toDate();
+
+
+
+          console.log(this.birth + '  getDetail');
+
+
           this.userTypeId = rs.rows.user_type_id;
           this.isActive = rs.rows.is_active === 'Y' ? true : false;
 

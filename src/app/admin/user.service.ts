@@ -20,13 +20,14 @@ export class UserService {
 
   }
 
-  save(username: any, password: any, firstName: any, lastName: any, birth: any, userTypeId: any, isActive: any) {
+  save(username: any, password: any, firstName: any, lastName: any, codeId: any, birth: any, userTypeId: any, isActive: any) {
     let body: any = {};
 
     body.username = username;
     body.password = password;
     body.firstName = firstName;
     body.lastName = lastName;
+    body.sex = codeId;
     body.birth = birth;
     body.userTypeId = userTypeId;
     body.isActive = isActive;
@@ -38,7 +39,7 @@ export class UserService {
 
   }
 
-  update(userId: any, password: any, firstName: any, lastName: any, birth: any, userTypeId: any, isActive: any) {
+  update(userId: any, password: any, firstName: any, lastName: any, codeId: any, birth: any, userTypeId: any, isActive: any) {
 
     let body: any = {};
 
@@ -46,6 +47,7 @@ export class UserService {
     body.password = password;
     body.firstName = firstName;
     body.lastName = lastName;
+    body.sex = codeId;
     body.birth = birth;
     body.userTypeId = userTypeId;
     body.isActive = isActive;
@@ -96,6 +98,13 @@ export class UserService {
 
   getUserTypes() {
     const url = ` ${this.apiUrl}/user/types `;
+    return this.http.get(url).toPromise();
+
+  }
+
+
+  getSex() {
+    const url = ` ${this.apiUrl}/user/sex `;
     return this.http.get(url).toPromise();
 
   }

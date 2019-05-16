@@ -22,6 +22,10 @@ export class NewUserComponent implements OnInit {
 
   userType: any = [];
 
+  sex: any = [];
+
+  codeId: any;
+
   userId: any;
   userTypeId: any;
 
@@ -47,6 +51,7 @@ export class NewUserComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.getSex();
     await this.getUserType();
     if (this.userId) {
       await this.getUserDetail(this.userId);
@@ -66,6 +71,7 @@ export class NewUserComponent implements OnInit {
           this.password,
           this.firstName,
           this.lastName,
+          this.codeId,
           this.birth,
           this.userTypeId,
           isActive);
@@ -76,6 +82,7 @@ export class NewUserComponent implements OnInit {
           this.password,
           this.firstName,
           this.lastName,
+          this.codeId,
           this.birth,
           this.userTypeId,
           isActive);
@@ -120,6 +127,7 @@ export class NewUserComponent implements OnInit {
           //  this.password = null;
           this.firstName = rs.rows.first_name;
           this.lastName = rs.rows.last_name;
+          this.codeId = rs.rows.code;
           this.birth = moment(rs.rows.birth).toDate();
 
 
@@ -147,6 +155,24 @@ export class NewUserComponent implements OnInit {
       if (rs.ok) {
 
         this.userType = rs.rows;
+        console.log(rs.rows);
+      } else {
+        console.log(rs.error);
+      }
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  async getSex() {
+    try {
+      let rs: any = await this.userService.getSex();
+      if (rs.ok) {
+
+        this.sex = rs.rows;
         console.log(rs.rows);
       } else {
         console.log(rs.error);

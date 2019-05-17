@@ -4,7 +4,7 @@ import { ThaiDatePipe } from './thai-date.pipe';
 import { ShortTimePipe } from './short-time.pipe';
 
 @NgModule({
-  declarations: [ThaiDatePipe, ShortTimePipe],
+  declarations: [ThaiDatePipe, ShortTimePipe,],
   imports: [
     CommonModule
   ],

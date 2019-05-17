@@ -47,17 +47,17 @@
     <clr-dg-action-overflow>
 
       <button class="action-item" routerLink="/admin/newUser" [queryParams]="{userId: user.user_id}">
-        <clr-icon shape=" note"></clr-icon>Edit
+        <clr-icon shape="note"></clr-icon>Edit
       </button>
-      <button class="action-item">
-        <clr-icon shape=" trash"></clr-icon>Delete
+      <button class="action-item" (click)="removeUser(user.user_id)">
+        <clr-icon shape="trash"></clr-icon>Delete
       </button>
     </clr-dg-action-overflow>
-    <clr-dg-cell>{{user.user_id}}</clr-dg-cell>
+    <clr-dg-cell appYellowText>{{user.user_id}}</clr-dg-cell>
     <clr-dg-cell>{{user.first_name}} </clr-dg-cell>
     <clr-dg-cell>{{user.last_name}} </clr-dg-cell>
     <clr-dg-cell>{{user.birth | thaiDate}}</clr-dg-cell>
-    <clr-dg-cell>{{user.sex}}</clr-dg-cell>
+    <clr-dg-cell>{{user.name}}</clr-dg-cell>
     <clr-dg-cell>{{user.user_type_name}}</clr-dg-cell>
     <clr-dg-cell>
       <clr-icon shape="assign-user" class="is-success" *ngIf="user.is_active === 'Y' "></clr-icon>

@@ -1,0 +1,5 @@
+<select name="userTypeId" [(ngModel)]="userTypeId">
+  <option *ngFor="let u of userType" [value]="u.user_type_id">
+    {{ u.user_type_name }}
+  </option>
+</select>

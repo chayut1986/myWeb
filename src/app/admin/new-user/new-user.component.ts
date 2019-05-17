@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/shared/alert.service';
 import * as moment from 'moment';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 
 @Component({
@@ -20,14 +21,11 @@ export class NewUserComponent implements OnInit {
   birth: any;
   isActive = true;
 
-  userType: any = [];
-
-  sex: any = [];
-
-  codeId: any;
-
   userId: any;
+  sex: any = [];
+  sexTypeId: any;
   userTypeId: any;
+  userType: any = [];
 
 
 
@@ -71,7 +69,7 @@ export class NewUserComponent implements OnInit {
           this.password,
           this.firstName,
           this.lastName,
-          this.codeId,
+          this.sexTypeId,
           this.birth,
           this.userTypeId,
           isActive);
@@ -82,7 +80,7 @@ export class NewUserComponent implements OnInit {
           this.password,
           this.firstName,
           this.lastName,
-          this.codeId,
+          this.sexTypeId,
           this.birth,
           this.userTypeId,
           isActive);
@@ -127,7 +125,7 @@ export class NewUserComponent implements OnInit {
           //  this.password = null;
           this.firstName = rs.rows.first_name;
           this.lastName = rs.rows.last_name;
-          this.codeId = rs.rows.code;
+          this.sexTypeId = rs.rows.sex;
           this.birth = moment(rs.rows.birth).toDate();
 
 

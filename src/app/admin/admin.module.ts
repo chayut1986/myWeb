@@ -12,16 +12,25 @@ import { SharedModule } from '../shared/shared.module';
 import { NewUserComponent } from './new-user/new-user.component';
 import { CreditComponent } from './credit/credit.component';
 import { UserService } from './user.service';
+import { AlertService } from '../shared/alert.service';
+import { AuthGuardService } from '../shared/auth-guard.service';
+import { DirectivesModule } from '../directives/directives.module';
+import { YellowTextDirective } from './yellow-text.directive';
+
 
 @NgModule({
-  declarations: [LayoutComponent, MainComponent, NewUserComponent, CreditComponent],
-  providers: [AdminGuardService, UserService],
+
+  declarations: [LayoutComponent, MainComponent, NewUserComponent, CreditComponent, YellowTextDirective,],
+  providers: [AuthGuardService, AdminGuardService, UserService, AlertService],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ClarityModule,
     FormsModule,
-    SharedModule
-  ]
+    SharedModule,
+    DirectivesModule
+
+  ],
+
 })
 export class AdminModule { }

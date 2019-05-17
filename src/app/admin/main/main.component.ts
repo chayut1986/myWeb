@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 
 
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -43,6 +44,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private alertService: AlertService,
 
   ) { }
 
@@ -64,6 +66,30 @@ export class MainComponent implements OnInit {
       this.loading = false;
 
     }
+  }
+
+  async removeUser(userId: any, idx: any) {
+    this.alertService.confirm()
+      .then(async (result) => {
+        if (result.value) {
+          try {
+            let rs: any = await this.userService.removeUser(userId);
+            if (rs.ok) {
+
+              this.alertService.success();
+              this.getUser(); // this.perPage, 0 ดึงทั้งหมดในฐานข้อมูล
+
+              // this.users.splice(idx, 1); // ลบ index ที่จะลบ
+            } else {
+              this.alertService.error();
+            }
+
+          } catch (error) {
+            this.alertService.error();
+          }
+
+        }
+      })
   }
 
 

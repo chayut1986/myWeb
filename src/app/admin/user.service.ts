@@ -20,14 +20,14 @@ export class UserService {
 
   }
 
-  save(username: any, password: any, firstName: any, lastName: any, codeId: any, birth: any, userTypeId: any, isActive: any) {
+  save(username: any, password: any, firstName: any, lastName: any, sexTypeId: any, birth: any, userTypeId: any, isActive: any) {
     let body: any = {};
 
     body.username = username;
     body.password = password;
     body.firstName = firstName;
     body.lastName = lastName;
-    body.sex = codeId;
+    body.sexTypeId = sexTypeId;
     body.birth = birth;
     body.userTypeId = userTypeId;
     body.isActive = isActive;
@@ -39,7 +39,7 @@ export class UserService {
 
   }
 
-  update(userId: any, password: any, firstName: any, lastName: any, codeId: any, birth: any, userTypeId: any, isActive: any) {
+  update(userId: any, password: any, firstName: any, lastName: any, sexTypeId: any, birth: any, userTypeId: any, isActive: any) {
 
     let body: any = {};
 
@@ -47,7 +47,7 @@ export class UserService {
     body.password = password;
     body.firstName = firstName;
     body.lastName = lastName;
-    body.sex = codeId;
+    body.sexTypeId = sexTypeId;
     body.birth = birth;
     body.userTypeId = userTypeId;
     body.isActive = isActive;
@@ -83,7 +83,7 @@ export class UserService {
     return this.http.put(url, body).toPromise();
   }
 
-  remove(userId: any) {
+  removeUser(userId: any) {
     const url = ` ${this.apiUrl}/user/users/${userId} `;
     return this.http.delete(url).toPromise();
 

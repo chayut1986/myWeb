@@ -55,6 +55,12 @@ export class NewUserComponent implements OnInit {
       await this.getUserDetail(this.userId);
     }
 
+
+
+
+
+
+
   }
 
   async save() {
@@ -180,6 +186,10 @@ export class NewUserComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  onSelectedUserType(event) {
+    this.userTypeId = event;
   }
 
 }

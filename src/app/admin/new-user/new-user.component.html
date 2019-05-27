@@ -85,13 +85,15 @@
                     <label for="userType">User type</label>
                   </div>
                   <div class="col-md-3">
-                    <!-- <select name="userTypeId" [(ngModel)]="userTypeId">
+                    <select name="userTypeId" [(ngModel)]="userTypeId">
                       <option *ngFor="let u of userType" [value]="u.user_type_id">
                         {{ u.user_type_name }}
                       </option>
-                    </select> -->
+                    </select>
 
-                    <app-user-types (onSelected)="onSelected($event)"></app-user-types>
+                    <!-- <app-user-types [selectUserTypeId]="userTypeId" (onSelected)="onSelectedUserType($event)">
+
+                    </app-user-types> -->
                   </div>
 
                 </div>

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/admin/user.service';
-import { EventEmitter } from 'events';
+
 
 
 @Component({
@@ -12,7 +12,7 @@ export class UserTypesComponent implements OnInit {
 
   @Input() selectUserTypeId: any;
 
-  @Output() onSelected: EventEmitter = new EventEmitter;
+  @Output() onSelected: EventEmitter<any> = new EventEmitter();
 
   userTypeId: any;
   userType: any = [];
@@ -22,6 +22,9 @@ export class UserTypesComponent implements OnInit {
 
   async ngOnInit() {
     await this.getUserType();
+    if (this.selectUserTypeId) {
+      this.userTypeId = this.selectUserTypeId;
+    }
   }
 
 
@@ -31,6 +34,9 @@ export class UserTypesComponent implements OnInit {
       if (rs.ok) {
 
         this.userType = rs.rows;
+
+
+
         console.log(rs.rows);
       } else {
         console.log(rs.error);
@@ -42,4 +48,11 @@ export class UserTypesComponent implements OnInit {
     }
   }
 
+
+  onChange(event) {
+    this.onSelected.emit(this.userTypeId);
+  }
+
 }
+
+

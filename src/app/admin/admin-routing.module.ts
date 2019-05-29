@@ -7,6 +7,7 @@ import { AdminGuardService } from '../shared/admin-guard.service';
 import { PageNotFoundComponent } from '../shared/page-not-found/page-not-found.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { CreditComponent } from './credit/credit.component';
+import { MapsComponent } from './maps/maps.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'main', component: MainComponent },
       { path: 'newUser', component: NewUserComponent },
       { path: 'credit', component: CreditComponent },
+      { path: 'maps', component: MapsComponent },
       { path: '**', component: PageNotFoundComponent },
     ]
   }

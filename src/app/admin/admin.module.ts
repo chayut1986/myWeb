@@ -16,11 +16,12 @@ import { AlertService } from '../shared/alert.service';
 import { AuthGuardService } from '../shared/auth-guard.service';
 import { DirectivesModule } from '../directives/directives.module';
 import { YellowTextDirective } from './yellow-text.directive';
-
+import { AgmCoreModule } from '@agm/core';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
 
-  declarations: [LayoutComponent, MainComponent, NewUserComponent, CreditComponent, YellowTextDirective,],
+  declarations: [LayoutComponent, MainComponent, NewUserComponent, CreditComponent, YellowTextDirective, MapsComponent,],
   providers: [AuthGuardService, AdminGuardService, UserService, AlertService],
   imports: [
     CommonModule,
@@ -28,7 +29,12 @@ import { YellowTextDirective } from './yellow-text.directive';
     ClarityModule,
     FormsModule,
     SharedModule,
-    DirectivesModule
+    DirectivesModule,
+
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAY5yGWFosLbbJnvtqAMQwGnpkd_S7HyQ4',
+      libraries: ['places']
+    })
 
   ],
 
